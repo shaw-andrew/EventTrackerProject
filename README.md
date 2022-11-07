@@ -6,3 +6,12 @@ So far I've worked on the back-end creating a Java program that talks to SQL and
 
 ## Technologies used
 Java, SQL, REST, Spring Boot, Spring Data, Postman
+
+## Rest Endpoints
+| CRUD Op. | HTTP Verb | URI                  | Request Body | Response Body |
+|----------|-----------|----------------------|--------------|---------------|
+| Read     | GET       | `/api/exercises`     |              | List of all exercises |
+| Read     | GET       | `/api/exercises/{exerciseId}`|      | Representation of one exercise |
+| Create   | POST      | `/api/exercises`     | JSON for new exercise | JSON of created exercises
+| Update   | PUT       | `/api/exercises/{exerciseId}`| JSON to update cave | JSON of updated exercise |
+| Delete   | DELETE    | `/api/exercises/{exerciseId}`|      | Deletes exercise by ID

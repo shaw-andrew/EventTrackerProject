@@ -37,7 +37,10 @@ public class ExerciseServiceImpl implements ExerciseService {
 	@Override
 	public Exercise update(int exerciseId, Exercise exercise) {
 		Exercise exerciseToUpdate = exerciseRepo.queryById(exerciseId);
-		exerciseToUpdate.setRunDistanceInMiles(exercise.getRunDistanceInMiles());
+		exerciseToUpdate.setDistanceInMiles(exercise.getDistanceInMiles());
+		exerciseToUpdate.setDate(exercise.getDate());
+		exerciseToUpdate.setType(exercise.getType());
+		exerciseToUpdate.setDescription(exercise.getDescription());
 		return exerciseToUpdate;
 	}
 

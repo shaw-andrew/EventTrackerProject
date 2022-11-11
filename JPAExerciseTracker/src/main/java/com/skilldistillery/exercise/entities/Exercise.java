@@ -1,5 +1,6 @@
 package com.skilldistillery.exercise.entities;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -15,15 +16,24 @@ public class Exercise {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="run_distance_in_miles")
-	private double runDistanceInMiles;
+	@Column(name="distance_in_miles")
+	private double distanceInMiles;
+	
+	private String type;
+	
+	private String description;
+	
+	private LocalDate date;
 	
 	public Exercise() {}
 	
-	public Exercise(int id, double runDistanceInMiles) {
+	public Exercise(int id, double distanceInMiles, String type, String description, LocalDate date) {
 		super();
 		this.id = id;
-		this.runDistanceInMiles = runDistanceInMiles;
+		this.distanceInMiles = distanceInMiles;
+		this.type = type;
+		this.description = description;
+		this.date = date;
 	}
 
 	public int getId() {
@@ -34,14 +44,37 @@ public class Exercise {
 		this.id = id;
 	}
 
-	public double getRunDistanceInMiles() {
-		return runDistanceInMiles;
+	public double getDistanceInMiles() {
+		return distanceInMiles;
 	}
 
-	public void setRunDistanceInMiles(double runDistanceInMiles) {
-		this.runDistanceInMiles = runDistanceInMiles;
+	public void setDistanceInMiles(double runDistanceInMiles) {
+		this.distanceInMiles = runDistanceInMiles;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	@Override
 	public int hashCode() {
@@ -62,8 +95,7 @@ public class Exercise {
 	
 	@Override
 	public String toString() {
-		return "Exercise [id=" + id + ", runDistanceInMiles=" + runDistanceInMiles + "]";
+		return "Exercise [id=" + id + ", runDistanceInMiles=" + distanceInMiles + "]";
 	}
 	
-
 }

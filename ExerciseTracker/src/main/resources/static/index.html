@@ -25,8 +25,24 @@
 		</table>
 		<button id="addButton" class="btn-secondary">Add one!</button>
 	</div>
-	<div id=exerciseDetailsDiv></div>
-	<div id=addForm></div>
+	<div id="exerciseDetailsDiv"></div>
+	<div id="deleteConfirmDiv"></div>
+	<div id="addForm">
+	<h3>Add an Exercise!</h3>
+	<form name="addExerciseForm">
+	<select name="cardio" class="form-control">
+		<option selected disabled value="">Select Workout</option>
+		<option value="Bike">Bike</option>
+		<option value="Run">Run</option>
+		<option value="Hike">Hike</option>
+	</select>
+	<input type="text" class="form-control" name="description" placeholder="Where did it happen?">
+	<input type="date" class="form-control" name="date">
+	<input type="number" class="form-control"  name="distance" placeholder="How far in miles?">
+	<input name="addExerciseButton" class="btn-secondary" type="submit" value="Add one!">
+	</form>
+	</div>
+	
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>

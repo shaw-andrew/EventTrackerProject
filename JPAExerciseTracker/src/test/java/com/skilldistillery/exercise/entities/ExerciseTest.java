@@ -1,7 +1,7 @@
 package com.skilldistillery.exercise.entities;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,7 +44,7 @@ class ExerciseTest {
 	@Test
 	void test_Exercise_mapping() {
 		assertNotNull(exercise);
-		assertEquals(3.5, exercise.getRunDistanceInMiles());
+		assertEquals(3.5, exercise.getDistanceInMiles());
 	}
 
 }

@@ -40,6 +40,8 @@ function displayError(msg) {
 function displayExerciseList(exercises) {
 	let addForm = document.getElementById('addForm');
 	addForm.style.display = 'none';
+	let updateDiv = document.getElementById('updateForm');
+	updateDiv.style.display = 'none';
 	let tbody = document.getElementById('exerciseTableBody');
 	tbody.textContent = '';
 	errorDiv.textContent = '';
@@ -108,10 +110,11 @@ function displayExerciseById(exercise) {
 	exerciseDiv.appendChild(br);
 
 	let updateButton = document.createElement('button');
-	updateButton.textContent = 'Update this Entry';
+	updateButton.textContent = 'Update distance';
 	exerciseDiv.appendChild(updateButton);
 	updateButton.addEventListener('click', function(e) {
-		updateEntry(exercise);
+		updateEntryForm(exercise);
+		console.log(exercise);
 	});
 
 	let deleteButton = document.createElement('button');
@@ -140,9 +143,8 @@ function displayAddForm() {
 				type: addExerciseForm.cardio.value,
 				description: addExerciseForm.description.value,
 				date: addExerciseForm.date.value,
-				distanceInMiles: addExerciseForm.distance.value,
+				distanceInMiles: addExerciseForm.distance.value
 			}
-
 			addEvent(exercise);
 		})
 	});
@@ -169,8 +171,54 @@ function addEvent(exercise) {
 	xhr.send(exerciseJSON);
 }
 
-function updateEntry() {
+function updateEntryForm(exercise) {
+	let updateDiv = document.getElementById('updateForm');
+	updateDiv.style.display = 'block';
+	let listDiv = document.getElementById('exerciseDiv');
+	listDiv.style.display = 'none';
+	let deleteConfirm = document.getElementById('deleteConfirmDiv');
+	deleteConfirm.style.display = 'none';
+	let addForm = document.getElementById('addForm');
+	addForm.style.display = 'none';
+	let exerciseInfo = document.getElementById('exerciseDetailsDiv');
+	exerciseInfo.style.display = 'none';
+	console.log(exercise);
+	document.updateForm.distance.value = exercise.distanceInMiles;
+	document.updateForm.updateButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		exercise = {
+			id: exercise.id,
+			type: exercise.type,
+			description: exercise.description,
+			date: exercise.date,
+			distanceInMiles: parseInt(document.updateForm.distance.value)
+		}
+		console.log(exercise);
+		updateEntry(exercise);
+	});
+}
 
+function updateEntry(exercise) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'api/exercises/' + exercise.id);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				let newExercise = JSON.parse(xhr.responseText);
+				displayExerciseById(newExercise);
+				let addForm = document.getElementById('addForm');
+				addForm.style.display = 'none';
+				let updateDiv = document.getElementById('updateForm');
+				updateDiv.style.display = 'none';
+			}
+			else {
+				displayError('An error occurred: ' + xhr.status);
+			}
+		}
+	};
+	let exerciseJSON = JSON.stringify(exercise);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(exerciseJSON);
 }
 
 function deleteEntry(exerciseId) {
@@ -180,14 +228,16 @@ function deleteEntry(exerciseId) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 204) {
 				//deleteConfirmation();
+				let updateDiv = document.getElementById('updateForm');
+				updateDiv.style.display = 'none';
 				let listDiv = document.getElementById('exerciseDiv');
-				let deleteConfirm = document.getElementById('deleteConfirmDiv');
-				let addForm = document.getElementById('addForm');
-				let exerciseInfo = document.getElementById('exerciseDetailsDiv');
-				deleteConfirm.style.display = 'block';
 				listDiv.style.display = 'none';
-				exerciseInfo.style.display = 'none';
+				let deleteConfirm = document.getElementById('deleteConfirmDiv');
+				deleteConfirm.style.display = 'block';
+				let addForm = document.getElementById('addForm');
 				addForm.style.display = 'none';
+				let exerciseInfo = document.getElementById('exerciseDetailsDiv');
+				exerciseInfo.style.display = 'none';
 				let h2 = document.createElement('h2');
 				h2.textContent = "Entry successfully deleted."
 				deleteConfirm.appendChild(h2);
@@ -196,11 +246,11 @@ function deleteEntry(exerciseId) {
 				deleteConfirm.appendChild(backButton);
 				backButton.addEventListener('click', function() {
 					listDiv.style.display = 'block';
-					exerciseDiv.style.display = 'none';
+					exerciseInfo.style.display = 'none';
 					addForm.style.display = 'none';
 					window.location.reload();
 				})
-				} else if (xhr.status === 404) {
+			} else if (xhr.status === 404) {
 				displayError("Exercise not found");
 			}
 			else {
@@ -208,28 +258,10 @@ function deleteEntry(exerciseId) {
 			}
 		}
 	};
-
 	xhr.send(exerciseId);
 }
 
-function deleteConfirmation() {
-	let listDiv = document.getElementById('exerciseDiv');
-	let deleteConfirm = document.getElementById('exerciseDetailsDiv');
-	let addForm = document.getElementById('addForm');
-	deleteConfirm.style.display = 'block';
-	listDiv.style.display = 'none';
-	addForm.style.display = 'none';
-	let h2 = document.createElement('h2');
-	h2.textContent = "Entry successfully deleted."
-	deleteConfirm.appendchild(h2);
-	backButton.textContent = 'Back to List';
-	deleteConfirm.appendChild(backButton);
-	backButton.addEventListener('click', function() {
-		listDiv.style.display = 'block';
-		exerciseDiv.style.display = 'none';
-		addForm.style.display = 'block';
-	});
-}
+
 
 
 

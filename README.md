@@ -4,8 +4,12 @@ This project is a multi-week RESTful project. I created an exercise tracker data
 
 So far I've worked on the back-end creating a Java program that talks to SQL and tested my current endpoints using Postman.
 
+11/13/22 update:
+This week I added a Javascript front end and made a dynamic single page front end. I utilized Ajax calls to perform all CRUD operations. Currently they all work, but I'm having issues with my PUT request, where it updates on the page but does not update in the database. I will be getting help to make sure this functionality is operational. I'm looking forward to adding an Angular front end next week.
+
+
 ## Technologies used
-Java, SQL, REST, Spring Boot, Spring Data, Postman
+Java, Javascript, SQL, REST, Spring Boot, Spring Data, Postman
 
 ## Rest Endpoints
 | CRUD Op. | HTTP Verb | URI                  | Request Body | Response Body |

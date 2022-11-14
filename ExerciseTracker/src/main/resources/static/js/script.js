@@ -6,7 +6,7 @@ window.addEventListener('load', function(e) {
 function init() {
 	loadExerciseList();
 	displayAddForm();
-
+	aggregate();
 }
 
 function loadExerciseList() {
@@ -216,7 +216,7 @@ function updateEntry(exercise) {
 			}
 		}
 	};
-	let exerciseJSON = JSON.stringify(exercise);
+	let exerciseJSON = JSON.stringify(newExercise);
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.send(exerciseJSON);
 }
@@ -259,6 +259,33 @@ function deleteEntry(exerciseId) {
 		}
 	};
 	xhr.send(exerciseId);
+}
+
+function aggregate() {
+	let distance = 0;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/api/exercises/');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				let exercises = JSON.parse(xhr.responseText);
+				for (let exercise of exercises) {
+					distance += exercise.distanceInMiles;
+					console.log(distance);
+
+				}
+				let aggregate = document.getElementById('aggregate');
+				let h6 = document.createElement('h6');
+				h6.textContent = "Your total exercise distance is: " + distance;
+				aggregate.appendChild(h6);
+			}
+			else {
+				displayError('An error occurred: ' + xhr.status);
+			}
+		}
+	};
+	xhr.send();
 }
 
 

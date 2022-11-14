@@ -7,6 +7,8 @@ So far I've worked on the back-end creating a Java program that talks to SQL and
 11/13/22 update:
 This week I added a Javascript front end and made a dynamic single page front end. I utilized Ajax calls to perform all CRUD operations. Currently they all work, but I'm having issues with my PUT request, where it updates on the page but does not update in the database. I will be getting help to make sure this functionality is operational. I'm looking forward to adding an Angular front end next week.
 
+This project is available at: http://52.32.118.35:8086/api/exercises.
+
 
 ## Technologies used
 Java, Javascript, SQL, REST, Spring Boot, Spring Data, Postman

@@ -216,7 +216,7 @@ function updateEntry(exercise) {
 			}
 		}
 	};
-	let exerciseJSON = JSON.stringify(newExercise);
+	let exerciseJSON = JSON.stringify(exercise);
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.send(exerciseJSON);
 }

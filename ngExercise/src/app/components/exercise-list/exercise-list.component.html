@@ -1,0 +1,58 @@
+<h1 *ngIf="!selected">Welcome to your personal exercise tracker!</h1>
+<h5 *ngIf="!selected">Please click a workout to see complete details.</h5>
+<table *ngIf="tableView" class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Task</th>
+      <th>Mark</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let exercise of exercises">
+      <td (click)="displayExercise(exercise)">{{ exercise.type }}</td>
+      <td>{{ exercise.distanceInMiles }}</td>
+      <td>
+        <button (click)="deleteExercise(exercise.id)" class="btn btn-danger">X</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button *ngIf="tableView" (click)="addExerciseForm()" class="btn btn-secondary">Add a new one!</button>
+
+<form *ngIf="addView">
+<select [(ngModel)]="newExercise.type" name="type" class="form-control" placeholder="Select type of workout">
+  <option>Hike</option>
+  <option>Bike</option>
+  <option>Run</option>
+  <option>Other</option>
+</select>
+<input type="text" name="description" [(ngModel)]="newExercise.description" class="form-control" placeholder="Location"/>
+<input type="number" name="distanceInMiles" [(ngModel)]="newExercise.distanceInMiles" class="form-control" placeholder="Distance"/>
+<input type="date" name="date" [(ngModel)]="newExercise.date" class="form-control" placeholder="date"/>
+<button (click)="addExercise(newExercise)" class="btn btn-secondary">Add it!</button>
+</form>
+
+
+<div *ngIf="selected && detailView">
+  <h3>Workout Detail</h3>
+  On {{ selected.date }} you went for a(n) {{ selected.distanceInMiles }} mile {{ selected.type }} at {{ selected.description }}. <br> <br>
+  <button (click)="displayTable()" class="btn btn-secondary">Back to table</button>
+  <button (click)="setEditExercise(); editExerciseForm();" class="btn btn-secondary">Edit Exercise</button>
+</div>
+
+
+<div *ngIf="editView && editExercise">
+  <input
+    type="text"
+    name="detail"
+    [(ngModel)]="editExercise.description"
+  />Location<br />
+  <input
+    type="number"
+    name="distance"
+    [(ngModel)]="editExercise.distanceInMiles"
+  />Distance<br />
+  <button (click)="updateExercise(editExercise)" class="btn btn-secondary">Save</button>
+  <button (click)="displayTable()" class="btn btn-secondary">Cancel</button>
+</div>

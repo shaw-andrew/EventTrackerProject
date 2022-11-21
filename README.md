@@ -9,9 +9,12 @@ This week I added a Javascript front end and made a dynamic single page front en
 
 This project is available at: http://52.32.118.35:8080/ExerciseTracker/.
 
+11/21/22 update:
+This week I added an Angular/Bootstrap front end and archived the old JS front end. This still incorporates asyncrhonous calls, but is much better organized thanks to angular. Angular and Bootstrap made it very easy to add a navbar and to improve the overall look of the app. All other functionality remains the same.
+
 
 ## Technologies used
-Java, Javascript, SQL, REST, Spring Boot, Spring Data, Postman
+Java, Javascript, SQL, Angular, REST, Spring Boot, Spring Data, Postman, Bootstrap
 
 ## Rest Endpoints
 | CRUD Op. | HTTP Verb | URI                  | Request Body | Response Body |

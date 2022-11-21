@@ -115,4 +115,13 @@ export class ExerciseListComponent implements OnInit {
       },
     });
   }
+  aggregate(): number{
+    let distance = 0;
+    for(let exercise of this.exercises){
+      distance += exercise.distanceInMiles;
+      console.log(distance);
+    }
+
+    return distance;
+  }
 }

@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExerciseListComponent } from './components/exercise-list/exercise-list.component';
 import { NavigationComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     ExerciseListComponent,
     NavigationComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AboutComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
